@@ -13,22 +13,26 @@ export const setupScene = (canvas: HTMLCanvasElement) => {
     renderer.toneMappingExposure = 1;
 
     const buildingMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc });
-    const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+    const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x5C5C5C });
 
+    // Ground
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(50, 50), groundMaterial);
     ground.rotation.x = -Math.PI * 0.5;
     ground.receiveShadow = true;
     scene.add(ground);
 
+    // House
     const house = new THREE.Group();
     scene.add(house);
 
+    // Walls
     const walls = new THREE.Mesh(new THREE.BoxGeometry(4, 2.5, 3), buildingMaterial);
     walls.position.y = 1.25;
     walls.castShadow = true;
     walls.receiveShadow = true;
     house.add(walls);
 
+    // Roof
     const roof = new THREE.Mesh(
         new THREE.ConeGeometry(3, 1, 4),
         new THREE.MeshStandardMaterial({ color: 0x885522 })
@@ -39,6 +43,15 @@ export const setupScene = (canvas: HTMLCanvasElement) => {
     roof.receiveShadow = true;
     house.add(roof);
 
+    // Door
+    const doorMaterial = new THREE.MeshStandardMaterial({ color: 0x6B4423 });
+    const door = new THREE.Mesh(new THREE.BoxGeometry(1, 1.8, 0.1), doorMaterial);
+    door.position.set(0, 0.9, 1.51); // Position it in the front of the house
+    door.castShadow = true;
+    door.receiveShadow = true;
+    house.add(door);
+
+    // Trees
     const createTree = (x: number, z: number) => {
         const tree = new THREE.Group();
 

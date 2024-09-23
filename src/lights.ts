@@ -84,11 +84,11 @@ export const createLights = (scene: THREE.Scene) => {
     scene.add(key.light);
     if (key.helper) scene.add(key.helper);
 
-    const ambient = createLightWithHelper('AmbientLight', 0xffffff, 0.2);
+    const ambient = createLightWithHelper('AmbientLight', 0xffffff, 0.7);
     scene.add(ambient.light);
 
     const point = createLightWithHelper('PointLight', 0xffaa00, 1, 10, 2);
-    point.light.position.set(-2, 3, 2);
+    point.light.position.set(0, 2.4, 1.6);
     scene.add(point.light);
     if (point.helper) scene.add(point.helper);
 
